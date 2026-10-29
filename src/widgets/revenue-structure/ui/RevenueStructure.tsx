@@ -17,8 +17,8 @@ export const RevenueStructure = () => {
         <EmptyState />
       ) : (
       <div className="flex h-full min-h-0 flex-col">
-        <div className="flex min-h-0 flex-1 items-center gap-4">
-          <div className="relative aspect-square h-full max-h-[120px] shrink-0 min-[1500px]:max-h-[180px]">
+        <div className="flex min-h-0 flex-1 items-center justify-center gap-4 sm:gap-8 xl:gap-4">
+          <div className="relative aspect-square h-full max-h-[220px] shrink-0 xl:max-h-[120px] min-[1500px]:max-h-[180px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -42,11 +42,11 @@ export const RevenueStructure = () => {
               </PieChart>
             </ResponsiveContainer>
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-              <span data-testid="structure-total" className="text-[26px] font-bold leading-8 text-slate-900 tabular-nums"><AnimatedNumber value={total} format={formatMillions} /></span>
+              <span data-testid="structure-total" className="text-[28px] font-bold leading-8 xl:text-[20px] min-[1500px]:text-[26px] text-slate-900 tabular-nums"><AnimatedNumber value={total} format={formatMillions} /></span>
               <span className="text-xs text-slate-500">млн ₽</span>
             </div>
           </div>
-          <ul className="min-w-0 flex-1 text-[13px]">
+          <ul className="min-w-0 max-w-72 flex-1 text-[13px]">
             {slices.map((slice) => (
               <li key={slice.id}>
                 <button
