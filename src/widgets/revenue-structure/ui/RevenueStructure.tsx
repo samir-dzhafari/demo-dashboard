@@ -17,7 +17,7 @@ export const RevenueStructure = () => {
         <EmptyState />
       ) : (
       <div className="flex h-full min-h-0 flex-col">
-        <div className="flex min-h-0 flex-1 items-center justify-center gap-4 sm:gap-8 xl:gap-4">
+        <div className="flex min-h-0 flex-1 items-center justify-center gap-4 sm:justify-between sm:gap-8 sm:px-6 xl:gap-4 xl:px-0">
           <div className="relative aspect-square h-full max-h-[220px] shrink-0 xl:max-h-[120px] min-[1500px]:max-h-[180px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -46,7 +46,7 @@ export const RevenueStructure = () => {
               <span className="text-xs text-slate-500">млн ₽</span>
             </div>
           </div>
-          <ul className="min-w-0 max-w-72 flex-1 text-[13px]">
+          <ul className="min-w-0 max-w-72 flex-1 text-[13px] sm:w-72">
             {slices.map((slice) => (
               <li key={slice.id}>
                 <button
