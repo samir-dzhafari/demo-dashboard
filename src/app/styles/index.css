@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --color-app-bg: #f5f6fa;
+  --color-primary: #2f5bea;
+  --color-success: #12b886;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+}
+
+body {
+  @apply bg-app-bg text-slate-900 antialiased;
+}
+
+/* Keyboard focus is visible on every interactive element; components may refine it. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
