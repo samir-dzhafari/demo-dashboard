@@ -13,14 +13,23 @@ export const OperationsPage = () => (
     <DashboardHeader title="Операционная сводка" />
     <ActiveDirectionChip />
     <KpiCards />
-    <div className="grid auto-rows-[340px] grid-cols-1 gap-3 xl:h-[330px] xl:auto-rows-auto xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-      <RevenueTrend />
-      <RevenueStructure />
-    </div>
-    <div className="grid auto-rows-[400px] grid-cols-1 gap-3 xl:h-[400px] xl:auto-rows-auto xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.9fr)_minmax(0,1.05fr)]">
-      <BranchPlanFact />
-      <LoadHeatmap />
-      <BranchTable />
+    {/* One 10-column grid for both rows: 6/4 above and 3/3/4 below, so the column edges line up. */}
+    <div className="grid grid-cols-1 gap-3 xl:grid-cols-10 xl:grid-rows-[330px_400px]">
+      <div className="h-[340px] min-w-0 xl:col-span-6 xl:h-auto">
+        <RevenueTrend />
+      </div>
+      <div className="h-[340px] min-w-0 xl:col-span-4 xl:h-auto">
+        <RevenueStructure />
+      </div>
+      <div className="h-[400px] min-w-0 xl:col-span-3 xl:h-auto">
+        <BranchPlanFact />
+      </div>
+      <div className="h-[400px] min-w-0 xl:col-span-3 xl:h-auto">
+        <LoadHeatmap />
+      </div>
+      <div className="h-[400px] min-w-0 xl:col-span-4 xl:h-auto">
+        <BranchTable />
+      </div>
     </div>
   </div>
 )
