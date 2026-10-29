@@ -7,7 +7,7 @@ const COLORS = { leads: '#2F5BEA', cpl: '#F59E0B' } as const
 const AXIS_TICK = { fontSize: 11, fill: '#64748B' } as const
 
 const Legend = () => (
-  <ul className="flex items-center gap-4 text-xs text-slate-600">
+  <ul className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600">
     <li className="flex items-center gap-1.5"><span className="size-2 rounded-[2px]" style={{ background: COLORS.leads }} />Лиды, шт.</li>
     <li className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ background: COLORS.cpl }} />CPL, ₽</li>
   </ul>

@@ -12,7 +12,7 @@ const formatUpdatedAt = (iso: string): string => `${iso.slice(8, 10)}.${iso.slic
 
 /** Attribution model is fixed by the spec: every lead has exactly one channel (last significant). */
 const AttributionBadge = () => (
-  <span className="inline-flex h-8 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 text-[13px] text-slate-500">
+  <span className="inline-block max-w-full rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-[13px] leading-5 text-slate-500">
     Атрибуция <span className="font-semibold text-slate-900">Последний значимый</span>
   </span>
 )
@@ -20,16 +20,16 @@ const AttributionBadge = () => (
 /** Topbar of every dashboard screen: title, network badge, shared filters and the data freshness stamp. */
 export const DashboardHeader = ({ title, showChannels = false }: DashboardHeaderProps) => (
   <header className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-    <div className="flex items-center gap-3">
-      <h1 className="text-[22px] font-bold leading-7 text-slate-900">{title}</h1>
-      <Badge tone="neutral" className="text-[13px] font-normal">сеть «Вектор»</Badge>
+    <div className="flex min-w-0 max-w-full flex-wrap items-center gap-x-3 gap-y-1">
+      <h1 className="min-w-0 break-words text-[22px] font-bold leading-7 text-slate-900">{title}</h1>
+      <Badge tone="neutral" className="max-w-full whitespace-normal rounded-xl text-[13px] font-normal">Автомобильный сервисный центр</Badge>
     </div>
     <div className="flex flex-wrap items-center gap-2">
       <PeriodFilter />
       <BranchFilter />
       {showChannels && <ChannelFilter />}
       {showChannels ? <AttributionBadge /> : <ComparisonFilter />}
-      <span className="ml-2 text-xs text-slate-500">Обновлено {formatUpdatedAt(UPDATED_AT)}</span>
+      <span className="text-xs text-slate-500 sm:ml-2">Обновлено {formatUpdatedAt(UPDATED_AT)}</span>
     </div>
   </header>
 )

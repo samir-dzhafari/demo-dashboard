@@ -30,27 +30,27 @@ export const AcquisitionFunnel = () => {
       {isEmpty ? (
         <EmptyState />
       ) : (
-        <ol className="flex h-full min-h-0 flex-col justify-around gap-2 pb-1" data-testid="acquisition-funnel">
+        <ol className="flex h-full min-h-0 flex-col justify-around gap-2 pb-1 max-sm:gap-3" data-testid="acquisition-funnel">
           {stages.map((stage, index) => {
             const style = STAGE_STYLES[index] ?? STAGE_STYLES[STAGE_STYLES.length - 1]!
             const title = STAGE_TITLES[stage.key]
             return (
-              <li key={stage.key} className="grid min-h-0 grid-cols-[minmax(0,1fr)_64px] sm:grid-cols-[minmax(0,1fr)_76px] items-center gap-3">
+              <li key={stage.key} className="grid min-h-0 grid-cols-1 items-center gap-x-3 gap-y-0.5 sm:grid-cols-[minmax(0,1fr)_76px]">
                 <div className="flex justify-center">
                   <button
                     type="button"
                     onClick={() => setToast(`Список заявок этапа «${title}» — во второй очереди`)}
-                    style={{ width: `${style.width}%`, background: style.color }}
-                    className="flex h-10 items-center justify-between gap-2 rounded-lg px-2.5 text-white transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                    style={{ width: `${style.width}%`, minWidth: 'min(100%, 12rem)', background: style.color }}
+                    className="flex min-h-10 items-center justify-between py-1 gap-2 rounded-lg px-2.5 text-white transition-[filter] hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                   >
-                    <span className="min-w-0 truncate text-[12px] font-medium" title={title}>{title}</span>
+                    <span className="min-w-0 text-left text-[12px] font-medium leading-4">{title}</span>
                     <span className="shrink-0 text-[14px] font-bold tabular-nums"><AnimatedNumber value={stage.count} format={formatNumber} /></span>
                   </button>
                 </div>
-                <p className="text-right text-xs leading-4 text-slate-500">
+                <p className="flex items-baseline justify-end gap-1.5 text-xs leading-4 text-slate-500 sm:block sm:text-right">
                   {stage.conversionFromPrevious !== null && (
                     <>
-                      <span className="block text-[13px] font-semibold text-slate-800 tabular-nums"><AnimatedNumber value={stage.conversionFromPrevious} format={formatPercent} /></span>
+                      <span className="text-[13px] font-semibold sm:block text-slate-800 tabular-nums"><AnimatedNumber value={stage.conversionFromPrevious} format={formatPercent} /></span>
                       конверсия
                     </>
                   )}

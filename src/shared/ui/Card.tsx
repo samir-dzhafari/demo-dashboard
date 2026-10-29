@@ -19,7 +19,7 @@ export const Card = ({ title, subtitle, action, children, className, contentClas
           {title && <h2 className="text-[15px] font-semibold leading-5 text-slate-900">{title}</h2>}
           {subtitle && <p className="mt-0.5 text-xs text-slate-500">{subtitle}</p>}
         </div>
-        {action && <div className="shrink-0">{action}</div>}
+        {action && <div className="min-w-0 max-w-full">{action}</div>}
       </header>
     )}
     <div className={cn('min-h-0 flex-1', contentClassName)}>{children}</div>

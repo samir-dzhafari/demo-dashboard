@@ -17,34 +17,39 @@ const romiColor = (romi: number): string => {
 const RomiCell = ({ romi, withBar = true }: { romi: number | null; withBar?: boolean }) => (
   <div className="flex items-center justify-end gap-3">
     {withBar && (
-      <span aria-hidden className="h-1.5 w-10 overflow-hidden sm:w-16 xl:w-10 min-[1500px]:w-20 rounded-full bg-slate-100">
+      <span aria-hidden className="hidden h-1.5 w-10 overflow-hidden sm:block sm:w-16 xl:w-10 min-[1500px]:w-20 rounded-full bg-slate-100">
         {romi !== null && (
           <span className="block h-full rounded-full" style={{ width: `${Math.min(100, Math.max(0, (romi / BAR_MAX) * 100))}%`, background: romiColor(romi) }} />
         )}
       </span>
     )}
-    <span className="w-12 text-right font-semibold tabular-nums">{dash(romi, (value) => `${formatNumber(value)}%`)}</span>
+    <span className="text-right font-semibold tabular-nums sm:w-12">{dash(romi, (value) => `${formatNumber(value)}%`)}</span>
   </div>
 )
 
 const dash = (value: number | null, format: (n: number) => string): ReactNode => (value === null ? '—' : <AnimatedNumber value={value} format={format} />)
 const fmtInt = (value: number): string => formatNumber(Math.round(value))
 
+/** Columns that give way on phones: the table keeps channel, leads and ROMI. */
+const SECONDARY = 'hidden sm:table-cell'
+
 const COLUMNS: TableColumn<ChannelRow>[] = [
-  { key: 'name', header: 'Канал', render: (row) => row.name, sortValue: (row) => row.name },
+  { key: 'name', header: 'Канал', className: 'whitespace-normal sm:whitespace-nowrap', render: (row) => row.name, sortValue: (row) => row.name },
   {
     key: 'budget',
     header: 'Бюджет, млн ₽',
     align: 'right',
+    className: SECONDARY,
     render: (row) => dash(row.budget, formatMillions),
     sortValue: (row) => row.budget,
   },
   { key: 'leads', header: 'Лиды', align: 'right', render: (row) => dash(row.leads, fmtInt), sortValue: (row) => row.leads },
-  { key: 'cpl', header: 'CPL, ₽', align: 'right', render: (row) => dash(row.cpl, fmtInt), sortValue: (row) => row.cpl ?? -1 },
+  { key: 'cpl', header: 'CPL, ₽', align: 'right', className: SECONDARY, render: (row) => dash(row.cpl, fmtInt), sortValue: (row) => row.cpl ?? -1 },
   {
     key: 'conversion',
     header: 'Конв. в запись',
     align: 'right',
+    className: SECONDARY,
     render: (row) => dash(row.bookingConversion, (v) => `${formatNumber(v)}%`),
     sortValue: (row) => row.bookingConversion ?? -1,
   },
@@ -75,7 +80,7 @@ export const ChannelTable = () => {
       ) : (
         <Table
           columns={COLUMNS}
-          minWidth={520}
+          tableClassName="whitespace-nowrap sm:min-w-[520px]"
           rows={rows}
           getRowKey={(row) => row.channelId}
           isRowActive={(row) => row.channelId === soleChannel}
@@ -83,10 +88,10 @@ export const ChannelTable = () => {
           footer={
             <tr data-testid="channel-total">
               <td>Итого</td>
-              <td className="text-right">{dash(total.budget, formatMillions)}</td>
+              <td className={`text-right ${SECONDARY}`}>{dash(total.budget, formatMillions)}</td>
               <td className="text-right">{dash(total.leads, fmtInt)}</td>
-              <td className="text-right">{dash(total.cpl, fmtInt)}</td>
-              <td className="text-right">{dash(total.bookingConversion, formatPercent)}</td>
+              <td className={`text-right ${SECONDARY}`}>{dash(total.cpl, fmtInt)}</td>
+              <td className={`text-right ${SECONDARY}`}>{dash(total.bookingConversion, formatPercent)}</td>
               <td className="text-right"><RomiCell romi={total.romi} withBar={false} /></td>
             </tr>
           }

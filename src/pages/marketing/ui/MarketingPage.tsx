@@ -12,7 +12,7 @@ export const MarketingPage = () => (
     <DashboardHeader title="Маркетинг и продажи" showChannels />
     <ActiveChannelChip />
     <MarketingKpi />
-    <div className="grid auto-rows-[320px] grid-cols-1 gap-3 xl:h-[310px] xl:auto-rows-auto xl:grid-cols-[minmax(0,1fr)_minmax(0,1.9fr)]">
+    <div className="grid grid-cols-1 grid-rows-[auto_320px] gap-3 xl:h-[310px] xl:grid-rows-none xl:grid-cols-[minmax(0,1fr)_minmax(0,1.9fr)]">
       <AcquisitionFunnel />
       <LeadsWeekly />
     </div>

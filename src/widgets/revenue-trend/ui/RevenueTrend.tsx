@@ -6,7 +6,7 @@ import { useRevenueTrend, type RevenueTrendPoint } from '../model/useRevenueTren
 const COLORS = { fact: '#2F5BEA', previousYear: '#B8C0D4', plan: '#F59E0B' } as const
 
 const Legend = ({ year, hasPlan }: { year: number; hasPlan: boolean }) => (
-  <ul className="flex items-center gap-4 text-xs text-slate-600">
+  <ul className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600">
     <li className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ background: COLORS.fact }} />{year} факт</li>
     <li className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ background: COLORS.previousYear }} />{year - 1}</li>
     {hasPlan && <li className="flex items-center gap-1.5"><span className="size-2 rounded-full" style={{ background: COLORS.plan }} />План {year}</li>}

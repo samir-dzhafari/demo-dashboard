@@ -22,8 +22,8 @@ interface TableProps<Row> {
   onRowClick?: (row: Row) => void
   /** Highlights the row, e.g. the one currently used as a filter. */
   isRowActive?: (row: Row) => boolean
-  /** Min width of the table: below it the wrapper scrolls horizontally instead of squeezing columns. */
-  minWidth?: number | string
+  /** Classes of the `<table>` element, e.g. a min-width below which the wrapper scrolls horizontally. */
+  tableClassName?: string
   /** Max height of the scroll area; the header stays sticky inside it. */
   maxHeight?: number | string
   className?: string
@@ -31,7 +31,7 @@ interface TableProps<Row> {
 
 type SortState = { key: string; direction: 'asc' | 'desc' } | null
 
-export const Table = <Row,>({ columns, rows, getRowKey, footer, onRowClick, isRowActive, maxHeight, minWidth, className }: TableProps<Row>) => {
+export const Table = <Row,>({ columns, rows, getRowKey, footer, onRowClick, isRowActive, maxHeight, tableClassName, className }: TableProps<Row>) => {
   const [sort, setSort] = useState<SortState>(null)
 
   const sortedRows = useMemo(() => {
@@ -55,7 +55,7 @@ export const Table = <Row,>({ columns, rows, getRowKey, footer, onRowClick, isRo
 
   return (
     <div className={cn('overflow-auto', className)} style={{ maxHeight }}>
-      <table className="w-full border-collapse whitespace-nowrap text-[13px]" style={{ minWidth }}>
+      <table className={cn('w-full border-collapse text-[12px] min-[1500px]:text-[13px]', tableClassName)}>
         <thead>
           <tr>
             {columns.map((column) => {
@@ -65,7 +65,7 @@ export const Table = <Row,>({ columns, rows, getRowKey, footer, onRowClick, isRo
                   key={column.key}
                   aria-sort={active ? (sort.direction === 'asc' ? 'ascending' : 'descending') : undefined}
                   className={cn(
-                    'sticky top-0 z-10 border-b border-slate-200 bg-white px-2 py-2 text-xs font-normal text-slate-500',
+                    'sticky top-0 z-10 border-b border-slate-200 bg-white px-1.5 py-2 text-xs min-[1500px]:px-2 font-normal text-slate-500',
                     column.align === 'right' ? 'text-right' : 'text-left',
                     column.className,
                   )}
@@ -111,7 +111,7 @@ export const Table = <Row,>({ columns, rows, getRowKey, footer, onRowClick, isRo
               {columns.map((column) => (
                 <td
                   key={column.key}
-                  className={cn('px-2 py-2.5 text-slate-800', column.align === 'right' ? 'text-right tabular-nums' : 'text-left', column.className)}
+                  className={cn('px-1.5 py-2.5 text-slate-800 min-[1500px]:px-2', column.align === 'right' ? 'text-right tabular-nums' : 'text-left', column.className)}
                 >
                   {column.render(row)}
                 </td>
@@ -119,7 +119,7 @@ export const Table = <Row,>({ columns, rows, getRowKey, footer, onRowClick, isRo
             </tr>
           ))}
         </tbody>
-        {footer && <tfoot className="[&_td]:border-t [&_td]:border-slate-200 [&_td]:px-2 [&_td]:py-2.5 [&_td]:font-semibold [&_td]:tabular-nums">{footer}</tfoot>}
+        {footer && <tfoot className="[&_td]:border-t [&_td]:border-slate-200 [&_td]:px-1.5 min-[1500px]:[&_td]:px-2 [&_td]:py-2.5 [&_td]:font-semibold [&_td]:tabular-nums">{footer}</tfoot>}
       </table>
     </div>
   )

@@ -17,7 +17,7 @@ export const OperationsPage = () => (
       <RevenueTrend />
       <RevenueStructure />
     </div>
-    <div className="grid auto-rows-[400px] grid-cols-1 gap-3 xl:h-[400px] xl:auto-rows-auto xl:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_minmax(0,0.9fr)]">
+    <div className="grid auto-rows-[400px] grid-cols-1 gap-3 xl:h-[400px] xl:auto-rows-auto xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.9fr)_minmax(0,1.05fr)]">
       <BranchPlanFact />
       <LoadHeatmap />
       <BranchTable />

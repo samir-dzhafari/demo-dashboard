@@ -18,7 +18,7 @@ export const RevenueStructure = () => {
       ) : (
       <div className="flex h-full min-h-0 flex-col">
         <div className="flex min-h-0 flex-1 items-center gap-4">
-          <div className="relative aspect-square h-full max-h-[180px] shrink-0">
+          <div className="relative aspect-square h-full max-h-[120px] shrink-0 min-[1500px]:max-h-[180px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -60,9 +60,9 @@ export const RevenueStructure = () => {
                   )}
                 >
                   <span className="size-2.5 shrink-0 rounded-[3px]" style={{ background: slice.color }} />
-                  <span className="min-w-0 flex-1 truncate text-slate-700">{slice.name}</span>
+                  <span className="min-w-0 flex-1 text-[12px] leading-4 text-slate-700 min-[1500px]:text-[13px]">{slice.name}</span>
                   <span className="font-semibold tabular-nums text-slate-900"><AnimatedNumber value={slice.revenue} format={formatMillions} /></span>
-                  <span className="w-12 text-right tabular-nums text-slate-500">{slice.share === null ? '—' : formatPercent(slice.share, 0)}</span>
+                  <span className="w-9 text-right tabular-nums text-slate-500 min-[1500px]:w-12">{slice.share === null ? '—' : formatPercent(slice.share, 0)}</span>
                 </button>
               </li>
             ))}

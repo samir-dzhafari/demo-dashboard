@@ -13,7 +13,7 @@ const SERIES = [
 const AXIS_TICK = { fontSize: 11, fill: '#64748B' } as const
 
 const Legend = () => (
-  <ul className="flex items-center gap-4 text-xs text-slate-600">
+  <ul className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600">
     {SERIES.map((series) => (
       <li key={series.key} className="flex items-center gap-1.5">
         <span className="size-2 rounded-[2px]" style={{ background: series.color }} />
@@ -70,7 +70,7 @@ export const BookingSources = () => {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={points} margin={{ top: 8, right: 4, bottom: 0, left: -12 }}>
                   <CartesianGrid vertical={false} stroke="#E8ECF4" />
-                  <XAxis dataKey="label" axisLine={false} tickLine={false} tick={AXIS_TICK} />
+                  <XAxis dataKey="label" axisLine={false} tickLine={false} tick={AXIS_TICK} interval={0} />
                   <YAxis
                     domain={[0, 'auto']}
                     tickCount={5}

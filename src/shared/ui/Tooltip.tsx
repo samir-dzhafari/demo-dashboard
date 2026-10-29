@@ -32,7 +32,7 @@ export const Tooltip = ({ content, children, side = 'top', align = 'center', wra
     <span
       role="tooltip"
       className={cn(
-        'pointer-events-none absolute z-40 rounded-md bg-slate-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-md transition-opacity group-hover/tooltip:opacity-100 group-focus-within/tooltip:opacity-100',
+        'pointer-events-none absolute z-40 rounded-md bg-slate-900 px-2 py-1 text-xs font-medium text-white hidden shadow-md group-hover/tooltip:block group-focus-within/tooltip:block',
         align !== 'center' && side !== 'right' ? EDGE_SIDES[align][side] : SIDES[side],
         wrap ? 'w-max max-w-60 whitespace-normal' : 'whitespace-nowrap',
       )}
